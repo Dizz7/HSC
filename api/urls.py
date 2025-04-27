@@ -1,10 +1,10 @@
-from django.urls import path
-from .views import CategoriaListAPIView
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import CategoriaViewSet
 
-from rest_framework.authtoken.views import obtain_auth_token
-
+router = DefaultRouter()
+router.register(r'categorias', CategoriaViewSet, basename='categoria')
 
 urlpatterns = [
-    path('categorias/', CategoriaListAPIView.as_view(), name='api_categorias'),
-    
+    path('', include(router.urls)),
 ]
